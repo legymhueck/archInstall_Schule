@@ -553,12 +553,12 @@ Die Installation erledigt dann nicht ```pacman```, sondern ein sogenannter "AUR-
 Um ```yay``` zu installieren, klont man das Repositorium, in den sich  das Installationsscript befindet:
 
 ```bash
-git clone aur.archlinux.org/yay
+git clone https://aur.archlinux.org/yay
 ```
 
 Dann wechselt man ins heruntergeladene Verzeichnis mit ```cd yay``` und gibt dort ein: ```makepkg -si```.
 
-Nach der Installation kann man alle AUR-Pakete mit dem Befehl ```yay``` installieren.
+Nach der Installation kann man alle AUR-Pakete mit dem Befehl ```yay```, gefolgt vom Paketnamen, installieren.
 Ein Programm für den Unterricht ist z. B. "filius". Um es zu installieren, tippt man: 
 
 ```
