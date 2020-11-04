@@ -553,9 +553,10 @@ Um die entsprechende Oberfläche zu verwenden, klickst du im Login-Manager oben 
 
 ## Das AUR - weitere Programme außerhalb des offiziellen Arch-Repositoriums
 
-Es gibt in Arch Linux noch eine große Anzahl von Programmen, für die von Benutzern Installations-Skripte erstellt werden.
-Das macht man mit sogenannten "AUR-Helpern". Eins der populärsten ist ```"yay"```.
+Es gibt in Arch Linux noch eine große Anzahl von Programmen, für die Benutzer Installations-Skripte erstellt haben.
+Die Installation erledigt dann nicht ```pacman```, sondern sogenannte "AUR-Helper". Ein populärer AUR-Helper ```"yay"```.
 Die Installationsskripte finden sich auf "git".
+
 Um yay zu installieren, gibt man ein:
 
 ```bash
@@ -576,8 +577,35 @@ yay lädt nun das Installationsskript herunter und installiert fehlende Abhängi
 ## Alias anlegen
 
 Damit man in der Konsole häufig verwendete Befehle nicht immer in voller Länge tippen muss, kann man dafür jeweils einen Alias anlegen.
-Man braucht z. B. häufig den Installationsbefehl "pacman". Zu pacman gibt es auch noch mehrere Optionen, z. B. dass eine Installation ohne weitere Bestätigungen ausgeführt werden soll und dass nichts installiert werden soll, falls das Programm schon vorhanden ist. Der Befehl würde lauten ```sudo pacman -S --noconfirm --needed```.
-Aliasse findet man in der Datei .bashrc. Der Punkt vor einer Datei heißt übrigens, dass sie versteckt ist.
+Man braucht z. B. häufig den Installationsbefehl "pacman". Zu pacman gibt es auch noch mehrere Optionen, z. B. dass eine Installation ohne weitere Bestätigungen ausgeführt werden soll und dass nichts installiert werden soll, falls das Programm schon vorhanden ist. Der Befehl würde lauten ```sudo pacman -S --noconfirm --needed``` gefolgt vom Programmnamen, z. B. ```firefox```.
+Aliasse legt man in der Datei ```.bashrc``` an. Der Punkt vor einer Datei heißt übrigens, dass sie versteckt ist.
 Wir editieren diese Datei mit ```vim .bashrc```. Wir benutzen **KEIN** ```sudo```, weil die Datei ja uns und nicht dem root-Benutzer gehört.
 Will man mit den Buchstaben ```p``` in Zukunft den gesamten Befehl aufrufen, schreibt man: ```alias p='sudo pacman -S --noconfirm --needed'```.
 Um das komplette System und alle AUR-Pakete zu aktualisieren, könnte man den Alias ```pu``` (pacman Update) erstellen. Die Zeile dazu hieße dann: ```alias pu='sudo pacman -Syu && yay -Syu'```.
+
+## Verzeichnisse und Dateien anzeigen
+
+Hier verwendet man den Befehl ```ls```. Möchte man auch versteckte Dateien anzeigen, lautet der Befehl ```ls -a```. Es gibt noch mehr Parameter, z. B. das ```l```, mit dem`Datei-Informationen in Langform ausgegeben werden. Der komplette Befehl lautet dann ```ls -la```.
+Obwohl der Befehl ```ls``` schon existiert, könnte man den gleichen Alias in die .bashrc eintragen und damit den Befehl erweitern.
+
+## Weitere Befehle
+
+- ```df -h``` - verfügbaren Festplattenplatz anzeigen
+- ```lsblk``` - alle Blockgeräte (z. B. Festplatten) anzeigen
+
+## System-Ressourcen und Auslastung anzeigen
+
+Hier ist das Programm ```htop``` sinnvoll. Die Installation erfolgt über ```sudo pacman -S htop```. In der Konsole lässt sich das Programm mit ```htop``` ausrufen. Schließen tut man es mit ```q``` oder ```Strg c```.
+
+## Cursor in der Konsole
+Mag man den Cursor in der Konsole nicht, kann man diesen verändern, wenn man diese Zeilen in der .bashrc einfügt und eine Zeile auskommentiert.
+
+```bash
+#echo -e -n "\x1b[\x30 q" # changes to blinking block
+#echo -e -n "\x1b[\x31 q" # changes to blinking block also
+#echo -e -n "\x1b[\x32 q" # changes to steady block
+#echo -e -n "\x1b[\x33 q" # changes to blinking underline
+#echo -e -n "\x1b[\x34 q" # changes to steady underline
+#echo -e -n "\x1b[\x35 q" # changes to blinking bar
+#echo -e -n "\x1b[\x36 q" # changes to steady bar
+```
