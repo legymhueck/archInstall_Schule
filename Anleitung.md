@@ -578,7 +578,7 @@ Um das komplette System und alle AUR-Pakete zu aktualisieren, könnte man den Al
 
 ## Verzeichnisse und Dateien anzeigen
 
-Hier verwendet man den Befehl ```ls```. Möchte man auch versteckte Dateien anzeigen, lautet der Befehl ```ls -a```. Es gibt noch mehr Parameter, z. B. das ```l```, mit dem`Datei-Informationen in Langform ausgegeben werden. Der komplette Befehl lautet dann ```ls -la```.
+Hier verwendet man den Befehl ```ls```. Möchte man auch versteckte Dateien anzeigen, lautet der Befehl ```ls -a```. Es gibt noch mehr Parameter, z. B. das ```l```, mit dem Datei-Informationen in Langform ausgegeben werden. Der komplette Befehl lautet dann ```ls -la```.
 Obwohl der Befehl ```ls``` schon existiert, könnte man den gleichen Alias in die .bashrc eintragen und damit den Befehl erweitern.
 
 ## Weitere Befehle
