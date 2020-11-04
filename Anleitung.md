@@ -459,16 +459,6 @@ Section "InputClass"
 EndSection
 ```
 
-Falls die Installation auf einem Stick erfolgt, können wir noch etwas Performance herausholen, indem wir temporäre Dateien in den Arbeitsspeicher und nicht auf den Stick speichern. Dazu geben wir folgende Befehle ein:
-
-```bash
-echo "tmpfs   /tmp                   tmpfs   rw,nodev,nosuid 0  0" >> /etc/fstab
-```
-
-```bash
-echo "tmpfs   /home/michael/.cache   tmpfs   rw,nodev,nosuid 0  0" >> /etc/fstab
-```
-
 Jetzt haben wir es endlich geschafft. Linux ist nach unseren Wünschen eingerichtet.
 Wir verlassen das Installationssystem mit:
 
@@ -497,10 +487,11 @@ reboot
 ![exit](exit.png)
 ![close reboot](cryptsetup_close_und_reboot.png)
 
+## Neustart
+
 Es könnte sein, dass dein PC noch vom Stick bootet. Denke daran, diesen auszustecken.
 
 Nach den Neustart landest du im Login-Manager. Gib hier dein Passwort ein.
-Denke daran: Auch hier erhältst du aus Sicherheitsgründen kein Feedback!
 
 ![login michael](login_manager.png)
 
@@ -565,6 +556,19 @@ sudo vim /etc/lightdm/lightdm.conf
 ```
 
 Wir suchen hier nach der Zeile ```[Seat:*]```. Hier finden wir etwas weiter unten: ```#autologin-user=```. Wir entfernen das #-Zeichen und schreiben nach dem =-Zeichen unseren Benutzernamen, in diesem Fall ```michael```.
+
+## Performance
+
+Falls die Installation auf einem Stick erfolgt, können wir noch etwas Performance herausholen, indem wir temporäre Dateien in den Arbeitsspeicher und nicht auf den Stick speichern. Dazu geben wir folgende Befehle ein:
+
+```bash
+echo "tmpfs   /tmp                   tmpfs   rw,nodev,nosuid 0  0" >> /etc/fstab
+```
+
+```bash
+echo "tmpfs   /home/michael/.cache   tmpfs   rw,nodev,nosuid 0  0" >> /etc/fstab
+```
+
 
 ## Pacman-Befehle
 
