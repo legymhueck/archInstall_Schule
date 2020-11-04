@@ -630,3 +630,38 @@ Mag man den Cursor in der Konsole nicht, kann man diesen verändern, wenn man di
 #echo -e -n "\x1b[\x35 q" # changes to blinking bar
 #echo -e -n "\x1b[\x36 q" # changes to steady bar
 ```
+
+## Programme installieren mit einen Skript
+
+Für Aktionen, die man immer wieder erledigt, schreibt man sich meist kleine Skripte. Diese können auf der Kommandozeile ausgeführt werden. Skripte, genauer *shell-scripts* haben die Endung ```.sh```. Wir erstllen mit ```vim programme.sh``` eine solche Datei. Anschließend kopieren wir den unten stehenden Inhalt dort hinein.
+Um das Skript ausführbar zu machen, geben wir ```chmod +x programme.sh``` ein.
+Nun können wir das Skript mit ```sh programme.sh``` oder mit ```./programme.sh``` starten.
+
+```bash
+#!/bin/bash
+echo ""
+echo "Missing packages are installed"
+
+echo ""
+echo "Installing X ..."
+sudo pacman -S --needed --noconfirm xorg-server i3-gaps i3status xorg-xrandr xorg-xbacklight lightdm lightdm-gtk-greeter xf86-video-intel xf86-video-ati
+
+echo "Installing authentication ..."
+sudo pacman -S --needed --noconfirm gnome-keyring libgnome-keyring libsecret polkit polkit-gnome
+
+echo "Installing file systems"
+sudo pacman -S --needed --noconfirm dosfstools mtools exfatprogs ntfs-3g udisk2 gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb wpa_supplicant
+
+echo "Installing fonts"
+sudo pacman -S --needed --noconfirm ttf-liberation awesome-terminal-fonts adobe-source-sans-pro-fonts cantarell-fonts noto-fonts tamsyn-font terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-font-awesome ttf-hack ttf-inconsolata ttf-jetbrains-mono ttf-roboto ttf-ubuntu-font-family
+
+echo "Installing themes"
+sudo pacman -S --needed --noconfirm materia-gtk-theme breeze-gtk papirus-icon-theme lxappearance
+
+echo "Installing audio"
+sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-equalizer pulseaudio-jack
+
+echo "Installing further applications ..."
+sudo pacman -S --needed --noconfirm grub-btrfs git rofi alacritty termite arandr htop mc l3afpad doublecmd-gtk2 acpid git openssh
+sudo systemctl enable acpid
+```
