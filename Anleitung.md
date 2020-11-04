@@ -183,6 +183,7 @@ umount /mnt
 
 ```bash
 mount -o subvol=@root,ssd,compress=zstd,noatime /dev/mapper/michael /mnt
+```
 
 ```bash
 mkdir /mnt/home
@@ -203,19 +204,19 @@ mount /dev/sda2 /mnt/boot
 Nun können wir das eigentliche Betriebssystem installieren. Im Folgenden siehst du, welche Programme wir installieren und wofür sie da sind:
 
 - base – Grundprogramme
-- linux – der Linux-Kernel
+- linux – Linux-Kernel
 - linux-firmware – (proprietäre) Treiber für weitere Hardware
-- grub – der Bootmanager
-- efibootmgr – damit man von (U)EFI-Systemen booten kann
+- grub – Bootmanager zum Starten von Betriebssystemen
+- efibootmgr – (U)EFI-Systeme booten
 - btrfs-progs dosfstools mtools – Dateisystemunterstützung
-- vim – ein Konsolen-Textprogramm
-- sudo – damit man als normaler Benutzer root-Rechte erhalten kann (für administrative Aufgaben)
-- xdg-user-dirs xdg-utils – damit werden die Benutzerverzeichnisse automatisch angelegt
-- xorg-server – ist für die Grafikausgabe der grafischen Benutzeroberfläche zuständig
-- xfce4 – eine Arbeitsumgebung (desktop environment), d. h. die Benutzeroberfläche
-- networkmanager – für die Netzwerk- und Internetverbindung
+- vim – Konsolen-Textprogramm
+- sudo – root-Rechte für normale Nutzer (für administrative Aufgaben)
+- xdg-user-dirs xdg-utils – Benutzerverzeichnisse automatisch angelegen
+- xorg-server – Grafikausgabe der grafischen Benutzeroberfläche
+- xfce4 – Arbeitsumgebung (desktop environment), d. h. die Benutzeroberfläche
+- networkmanager – Netzwerk- und Internetverbindung
 - lightdm lightdm-gtk-greeter – Login-Manager zur grafischen Anmeldung
-- alacritty – ein Terminal für die grafische Benutzeroberfläche
+- alacritty – Terminal in der grafische Benutzeroberfläche
 
 ```bash
 pacstrap /mnt base linux linux-firmware grub efibootmgr btrfs-progs dosfstools mtools vim sudo xdg-user-dirs xdg-utils xorg-server xfce4 networkmanager lightdm lightdm-gtk-greeter alacritty
@@ -256,7 +257,7 @@ Der Texteditor __vim__ ist in der Linux-Welt ein häufig verwendetes Programm. V
 vim /etc/locale.gen
 ```
 
-Fahre mit den Cursortasten bis zur Zeile ```de_DE-UTF-8```
+Fahre mit den Cursortasten bis zur Zeile ```de_DE-UTF-8```.
 Drücke nun die Taste __i__, um in den Einfüge-Modus zu gelangen. Du siehst unten nun ```-- INSERT --``` .
 Lösche nun das __#__ vor ```de_DE-UTF-8```. Damit wird die Zeile aktiv, d. .h. du entfernst das Kommentar-Zeichen ```#```.
 Wiederhole den Vorgang für ```en_US.UTF-8```.
