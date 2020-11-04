@@ -133,7 +133,7 @@ cryptsetup open /dev/sda3 michael
 
 Du erhältst bei der Eingabe __kein Feedback__, sondern landest wieder im root-Prompt mit dem #.
 
-Nun legen wir auf dem verschlüsselten Bereich ein Dateisystem an. UEFI verlangt, dass man einen Bereich mit Fat32 formatiert. Wir haben ja schon gelernt, dass Fat32 von allen Betriebssystemen gelesen werden kann. Den verschlüsselten Bereich formatieren wir mit dem Dateisystem btrfs, das im Vergleich zum sehr populären ext4 weitere Features wie inkrementelle Backups der Festplatte (Snamshots), Kompression und inkrementelle Speicherung von Dateien (Copy-on-write (COW)) unterstützt. Das letzte bedeutet, dass die Kopie einer Datei keinen Speicherplatz benötigt. Speicherplatz wird erst belegt, wenn sich die Kopie ändert. Es werden dann auch nur die Änderungen gespeichert.
+Nun legen wir auf dem verschlüsselten Bereich ein Dateisystem an. UEFI verlangt, dass man einen Bereich mit Fat32 formatiert. Wir haben ja schon gelernt, dass Fat32 von allen Betriebssystemen gelesen werden kann. Den verschlüsselten Bereich formatieren wir mit dem Dateisystem btrfs, das im Vergleich zum sehr populären ext4 weitere Features wie inkrementelle Backups der Festplatte (Snapshots), Kompression und inkrementelle Speicherung von Dateien (Copy-on-write (COW)) unterstützt. Das letzte bedeutet, dass die Kopie einer Datei keinen Speicherplatz benötigt. Speicherplatz wird erst belegt, wenn sich die Kopie ändert. Es werden dann auch nur die Änderungen gespeichert.
 
 Wir erstellen das Fat32-Dateisystem:
 
