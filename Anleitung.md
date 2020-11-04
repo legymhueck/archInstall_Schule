@@ -423,7 +423,7 @@ EDITOR=vim visudo
 ```
 
 Wir suchen nach der Zeile ```# %wheel ALL=(ALL) ALL```.
-Wir drücken wieder die Taste ```i``` zum Einfügen und löschen das ```#```
+Wir drücken die Taste ```i``` und löschen das ```#```.
 Jetzt drücken wir ```Esc``` und schreiben ```:wq```
 
 Alle Benutzer, die in der Gruppe ```wheel``` sind, haben die Berechtigung, sudo (root) Rechte zu erhalten. Unser Benutzerkonto erstellen wir daher so, dass wir Mitglied der ```wheel```-Gruppe sind. Wir fügen uns auch noch anderen Gruppen zu. Das machen wir mit:
@@ -660,7 +660,7 @@ echo "Installing fonts"
 sudo pacman -S --needed --noconfirm ttf-liberation awesome-terminal-fonts adobe-source-sans-pro-fonts cantarell-fonts noto-fonts tamsyn-font terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-font-awesome ttf-hack ttf-inconsolata ttf-jetbrains-mono ttf-roboto ttf-ubuntu-font-family
 
 echo "Installing themes"
-sudo pacman -S --needed --noconfirm materia-gtk-theme breeze-gtk papirus-icon-theme lxappearance
+sudo pacman -S --needed --noconfirm materia-gtk-theme breeze-gtk papirus-icon-theme lxappearance-gtk3
 
 echo "Installing audio"
 sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-equalizer pulseaudio-jack
