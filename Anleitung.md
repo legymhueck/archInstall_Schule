@@ -259,11 +259,11 @@ vim /etc/locale.gen
 
 Fahre mit den Cursortasten bis zur Zeile ```de_DE-UTF-8```.
 Drücke nun die Taste __i__, um in den Einfüge-Modus zu gelangen. Du siehst unten nun ```-- INSERT --``` .
-Lösche nun das __#__ vor ```de_DE-UTF-8```. Damit wird die Zeile aktiv, d. .h. du entfernst das Kommentar-Zeichen ```#```.
+Lösche nun das __#__ vor ```de_DE-UTF-8```. Damit wird die Zeile aktiv, d. h. du entfernst das Kommentar-Zeichen ```#```.
 Wiederhole den Vorgang für ```en_US.UTF-8```.
 
 Wenn du fertig bist, drücke die Esc-Taste oben links auf der Tastatur. Das ```-- INSERT --``` unten verschwindet.
-Tippe nun __:wq__ für __write__ und __quit__.
+Tippe nun ```:wq``` für __write__ und __quit__.
 Nun landest du wieder im root-Prompt ```#```.
 
 Nun erzeugen wir die gerade auskommentierten Lokalisierungen mit:
@@ -319,7 +319,7 @@ Damit unser eigener PC und das Netzwerk diesen Namen verwalten können, brauchen
 vim /etc/hosts
 ```
 
-und trage Folgendes ein:
+und trage Folgendes über oder unter den bereits vorhandenen Text ein:
 
 ```bash
 127.0.0.1 localhost
@@ -329,20 +329,13 @@ und trage Folgendes ein:
 
 Passe den Computernamen entsprechend an. Wenn du oben ```arch``` gewählt hast, kannst du die Datei so übernehmen, ansonsten änderst du die beiden Stellen in deinen Namen um.
 
-Die Datei enthält schon Text.
-
-![hosts](hosts.png)
-
-Die # sagen, dass es sich nur um Kommentare oder inaktive Befehle handelt.
-Wir können sie daher entweder löschen und dann das unten Abgebildete einfügen oder das unten abgebildete über oder unter den vorhandenen Text einfügen.
-
 Jetzt brauchen wir noch ein Passwort für den Administrator, der in Linux __root__ heißt:
 
 ```bash
 passwd
 ```
 
-![](passwd.png)
+![Passwort für root](passwd.png)
 
 Damit wir unsere Festplatte oder unseren Stick von jedem Computer aus booten können, müssen wir noch eine Datei editieren. Tippe:
 
@@ -365,7 +358,7 @@ Die Ausgabe sieht hier etwa so aus:
 
 ![mkinitcpio](mkinitcpio.png)
 
-Damit der Computer die Festplatte auf einem BIOS-PC und einem UEFi-PC erkennt und von ihr starten kann, brauchen wir noch einen Boot-Manager.
+Damit der Computer die Festplatte auf einem BIOS-PC und einem UEFi-PC erkennt und von ihr starten kann, müssen wir noch den Boot-Manager installieren.
 Für BIOS-PCs tippen wir Folgendes ein:
 
 ```bash
@@ -428,7 +421,7 @@ Wir suchen nach der Zeile ```# %wheel ALL=(ALL) ALL```.
 Wir drücken wieder die Taste ```i``` zum Einfügen und löschen das ```#```
 Jetzt drücken wir ```Esc``` und schreiben ```:wq```
 
-Alle Benutzer, die in der Gruppe ```wheel``` sind, haben die Berechtigung, sudo (root) Rechte zu erhalten. Wir müssen uns daher selbst noch zur Gruppe ```wheel``` und zu anderen Gruppen hinzufügen. Das machen wir mit:
+Alle Benutzer, die in der Gruppe ```wheel``` sind, haben die Berechtigung, sudo (root) Rechte zu erhalten. Unser Benutzerkonto erstellen wir daher so, dass wir Mitglied der ```wheel```-Gruppe sind. Wir fügen uns auch noch anderen Gruppen zu. Das machen wir mit:
 
 ```bash
 useradd -m -g users -G wheel,audio,video,disk,storage,optical,scanner,rfkill,input -s /bin/bash michael
