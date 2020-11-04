@@ -543,6 +543,26 @@ Um die entsprechende Oberfläche zu verwenden, klickst du im Login-Manager oben 
 
 ![Login Manager Auswahl](login_manager_Auswahl.png)
 
+## Autologin
+
+Da wir ja beim Start des Betriebssystems die Festplatte entschlüsseln müssen und dazu ein Passwort eingeben, kann man sich eine zweite Anmeldung am Login-Manager sparen. Wir werden daher eine automatische Anmeldung einrichten.
+Damit ```autologin``` funktioniert, müssen wir die Gruppe anlegen mit:
+
+```bash
+groupadd -r autologin
+```
+
+und uns dann zu dieser Gruppe hinzufügen mit:
+
+```bash
+gpasswd -a michael autologin
+```
+
+Nun tragen wir in die Konfigurationsdatei des Login-Managers ein, wer standardmäßig angemeldet werden soll, mit:
+
+```bash
+sudo vim 
+
 ## Pacman-Befehle
 
 - ```sudo pacman -Syy``` - Paketquellen aktualisieren
