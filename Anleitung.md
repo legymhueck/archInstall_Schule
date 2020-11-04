@@ -21,17 +21,17 @@ Danach sieht man diesen Bildschirm:
 ![Bootstick Arch Linux](bootstick.png)
 Wir drücken hier die Eingabetaste bei der grau unterlegten Schrift. Dann sehen wir viele Zeilen mit Text. Hier handelt es sich um Programme, die für den Start des Betriebssystems notwendig sind. Die meisten sollten zu Beginn ein grünes OK in eckigen Klammern enthalten.
 
-Der Screenshot unten zeigt die Linux-Kommandozeile. Sie wird auch "Terminal" oder "Konsole" genannt.
+Dann landen wir in der Linux-Kommandozeile. Sie wird auch "Terminal" oder "Konsole" genannt.
 Vielleicht kennst du sie schon aus Filmen. Oftmals wird das Terminal mit Hackern in Verbindung gebracht, die dort Befehle eingeben oder Scripte (Mini-Programme) ausführen. In der Linux-Welt benutzt man (als Profi) oft das Terminal, weil sich viele Aufgaben schneller darüber erledigen lassen als über ein Programm mit einer Programmoberfläche (GUI).
 Ein Terminal ist meist schwarz. Es sieht nach dem Booten des Arch-Linux-Sticks so aus:
 
 ![Installation Startbildschirm](Installation_Startbildschirm.png)
 
-Arch Linux lässt sich durch die Eingabe von Befehlen installieren. In dieser Anleitung sind sie jeweils in einem grau unterlegten Kasten zu finden.
+Arch Linux lässt sich durch die Eingabe von Befehlen installieren. In dieser Anleitung sind diese jeweils in einem grau unterlegten Kasten zu finden.
 
 Nach dem # im oberen Bild (# gibt an, dass man Administrator- / Root-Rechte hat), siehst du einen Unterstrich, der blinkt. Hier kannst du etwas tippen. Tippe einmal auf der Tastatur herum. Achte einmal darauf, was erscheint, wenn du ein z oder ein ö, ä, ü, ß tippst. Was stellst du fest?
 
-Du hast sicherlich erkannt, dass die Tastatur nicht auf Deutsch gestellt ist. Tippe folgenden Befehl ein, um das Tastaturlayout auf Deutsch zu stellen:
+Du hast sicherlich erkannt, dass die Tastatur nicht auf Deutsch gestellt ist. Tippe folgenden Befehl ein, um das Tastaturlayout auf Deutsch zu stellen. Das y liegt auf dem z und das Minus-Zeichen liegt auf dem ß.
 
 ```bash
 loadkeys de-latin1
