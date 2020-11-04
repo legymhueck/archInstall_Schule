@@ -34,9 +34,9 @@ loadkeys de-latin1
 
 Wiederhole Aufgabe 1. Was stellst du jetzt fest?
 
-Wir wollen nun die Festplatte in Bereiche einteilen. Alle neuen UEFI kompatiblen Betriebssysteme brauchen einen mit Fat32 formatierten Bereich, um starten zu können. Wir wollen uns zusätzlich noch einen privaten Bereich einrichten, der „home“ heißt.
+Wir wollen nun die Festplatte in Bereiche einteilen. Alle neuen UEFI kompatiblen Betriebssysteme brauchen einen mit Fat32 formatierten Bereich, um starten zu können. Wir wollen uns zusätzlich noch einen privaten Bereich einrichten, der "home" heißt.
 
-Zuerst müssen wir herausfinden, wie der Festplattenname heißt. In der Fachsprache heißt das: „Wie wollen die ‚block devices“ auflisten. Der Befehl heißt "lsblk", also "ls" für list und "blk" für block devices.
+Zuerst müssen wir herausfinden, wie der Festplattenname heißt. In der Fachsprache heißt das: Wir wollen die *block devices* auflisten. Der Befehl heißt "lsblk", also "ls" für list und "blk" für block devices.
 
 ```bash
 lsblk
@@ -46,15 +46,15 @@ Es erscheint eine Ausgabe, die so ähnlich wie hier aussieht:
 
 ![lsblk](lsblk.png)
 
-Wir suchen nach einem Gerät, das unserer Festplattengröße entspricht. Im oberen Fall ist es sehr wahrscheinlich, dass es sich um das Gerät mit 48GB handelt. Hier heißt es **sda**.
+Wir suchen nach einem Gerät, das unserer Festplattengröße entspricht. Im oberen Fall ist es sehr wahrscheinlich, dass es sich um das Gerät mit 48G (Gigabyte) handelt. Hier heißt es **sda**.
 
-Nun starten wir das Programm "gdisk" für die Einrichtung der Festplatte.
+Nun starten wir das Programm "gdisk" zur Einrichtung der Festplatte.
 
 ```bash
 gdisk /dev/sda
 ```
 
-Das ```/dev/sda``` bedeutet: *device* und *sda* das *erste Blockgerät*, also die erste Festplatte. Weitere Geräte heißen **sdb, sdc**, usw.
+Das ```/dev/sda``` bedeutet: *device* und *sda* das *erste Blockgerät*, also die erste Festplatte. Falls weitere Festplatten verbaut sind, heißen diese **sdb, sdc**, usw.
 
 ![gdisk /dev/sda](gdisk.png)
 
@@ -74,7 +74,7 @@ Nach __Command (? for help):__ tippen wir ein __w__, um die Änderungen zu speic
 
 Nun sehen wir: __Do you want to proceed (Y/N):__ Hier tippen wir __Y__.
 
-Die Festplatte weiß nun, dass sie nach dem neuen Partitionsschema eingerichtet ist. Es gibt das alte MBR und das neue GPT. GPT bietet viele Vorteile, weshalb wir es hier verwenden. Wir wollen aber auch, dass unsere Festplatte auf alten Computern startet; dafür sorgen wir im nächsten Schritt.
+Die Festplatte weiß nun, dass sie nach dem neuen Partitionsschema eingerichtet ist. Es gibt das alte MBR und das neue GPT. GPT bietet viele Vorteile, weshalb wir es hier verwenden. Wir wollen aber auch, dass unsere Festplatte auf alten Computern startet. Dafür sorgen wir im nächsten Schritt.
 
 Wir sind nun wieder in der Kommandozeile.
 
@@ -122,7 +122,7 @@ Wir müssen nun eine Passphrase, d. h. ein Passwort vergeben, mit dem wir spät
 
 Wenn alles geklappt hat, sieht dein Bildschirm so ähnlich wie oben aus.
 
-Jetzt müssen wir den verschlüsselten Bereich aufschließen, um darin das Betriebssystem installieren zu können. Wir müssen dem verschlüsselten Bereich einen Namen geben. Hier nennen wir ihn „michael“. Du kannst auch einen eigenen Namen für den verschlüsselten Wohnbereich wählen. Achte aber darauf, dass du diesen Namen dann im Verlauf des Tutorials richtig anpasst. Ich würde dir raten, erst einmal alles stur nach Anleitung zu machen.
+Jetzt müssen wir den verschlüsselten Bereich aufschließen, um darin das Betriebssystem installieren zu können. Wir müssen dem verschlüsselten Bereich einen Namen geben. Hier nennen wir ihn "michael". Du kannst auch einen eigenen Namen für den verschlüsselten Wohnbereich wählen. Achte aber darauf, dass du diesen Namen dann im Verlauf des Tutorials richtig anpasst. Ich würde dir raten, erst einmal alles stur nach Anleitung zu machen.
 Wir geben also ein:
 
 ```bash
@@ -133,7 +133,7 @@ cryptsetup open /dev/sda3 michael
 
 Du erhältst bei der Eingabe __kein Feedback__, sondern landest wieder im root-Prompt mit dem #.
 
-Nun legen wir auf dem verschlüsselten Bereich ein Dateisystem an. UEFI verlangt, dass man einen Bereich mit Fat32 formatiert. Wir haben ja schon gelernt, dass Fat32 von allen Betriebssystemen gelesen werden kann. Den verschlüsselten Bereich formatieren wir mit dem Dateisystem btrfs, das im Vergleich zum sehr populären ext4 weitere Features wie Snapshots (Backups der Festplatte), Kompression und inkrementelle Speicherung von Dateien (copy on write) unterstützt. Das letzte bedeutet, dass die Kopie einer Datei keinen Speicherplatz benötigt. Speicherplatz wird erst belegt, wenn sich die Kopie ändert. Es werden dann auch nur die Änderungen gespeichert.
+Nun legen wir auf dem verschlüsselten Bereich ein Dateisystem an. UEFI verlangt, dass man einen Bereich mit Fat32 formatiert. Wir haben ja schon gelernt, dass Fat32 von allen Betriebssystemen gelesen werden kann. Den verschlüsselten Bereich formatieren wir mit dem Dateisystem btrfs, das im Vergleich zum sehr populären ext4 weitere Features wie inkrementelle Backups der Festplatte (Snamshots), Kompression und inkrementelle Speicherung von Dateien (Copy-on-write (COW)) unterstützt. Das letzte bedeutet, dass die Kopie einer Datei keinen Speicherplatz benötigt. Speicherplatz wird erst belegt, wenn sich die Kopie ändert. Es werden dann auch nur die Änderungen gespeichert.
 
 Wir erstellen das Fat32-Dateisystem:
 
@@ -200,7 +200,7 @@ mkdir /mnt/boot
 mount /dev/sda2 /mnt/boot
 ```
 
-Nun sind wir soweit, dass wir das eigentliche Betriebssystem installieren können. Dies sind die wichtigen Programme:
+Nun können wir das eigentliche Betriebssystem installieren. Im Folgenden siehst du, welche Programme wir installieren und wofür sie da sind:
 
 - base – Grundprogramme
 - linux – der Linux-Kernel
@@ -221,8 +221,6 @@ Nun sind wir soweit, dass wir das eigentliche Betriebssystem installieren könne
 pacstrap /mnt base linux linux-firmware grub efibootmgr btrfs-progs dosfstools mtools vim sudo xdg-user-dirs xdg-utils xorg-server xfce4 networkmanager lightdm lightdm-gtk-greeter alacritty
 ```
 
-Achte darauf, dass beim Kopieren alle Befehle in der Konsole landen.
-
 Wenn die Installation fertig ist, sollte die letzte Zeile der vielen Befehle und Installationsschritte so aussehen:
 
 ![Pacstrap](pacstrap.png)
@@ -239,19 +237,20 @@ Dann wechseln wir in unser neu erstelltes Betriebssystem.
 arch-chroot /mnt
 ```
 
-Wir müssen nun noch die Uhr synchronisieren:
+Wir müssen nun die Uhr synchronisieren:
 
 ```bash
 hwclock --systohc
 ```
 
-Wir stellen noch die Zeitzone auf Berlin:
+Wir stellen auch die Zeitzone auf Berlin:
 
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 ```
 
-Wir müssen nun das Programm __vim__ benutzen, das für Viele schwierig zu bedienen ist. Es gibt hier 2 Modi, einmal einen Schreib-Modus und einen Modus für Befehle, Navigation, usw.
+Der Texteditor __vim__ ist in der Linux-Welt ein häufig verwendetes Programm. Viele tun sich bei der Bedienung schwer. Man muss nämlich wissen, dass es 2 Modi gibt, einmal einen Schreib-Modus und zudem einen Modus für Befehle, Navigation, usw.
+ Mit der Taste ```i``` gelangst du in den Schreibmodus (insert), mit der Esc-Taste (Escape) verlässt du ihn.
 
 ```bash
 vim /etc/locale.gen
@@ -259,14 +258,14 @@ vim /etc/locale.gen
 
 Fahre mit den Cursortasten bis zur Zeile ```de_DE-UTF-8```
 Drücke nun die Taste __i__, um in den Einfüge-Modus zu gelangen. Du siehst unten nun ```-- INSERT --``` .
-Lösche nun das __#__ vor ```de_DE-UTF-8```
+Lösche nun das __#__ vor ```de_DE-UTF-8```. Damit wird die Zeile aktiv, d. .h. du entfernst das Kommentar-Zeichen ```#```.
 Wiederhole den Vorgang für ```en_US.UTF-8```.
 
 Wenn du fertig bist, drücke die Esc-Taste oben links auf der Tastatur. Das ```-- INSERT --``` unten verschwindet.
 Tippe nun __:wq__ für __write__ und __quit__.
-Nun landest du wieder im root-Prompt #.
+Nun landest du wieder im root-Prompt ```#```.
 
-Nun generieren wir die gerade erzeugten Lokalisierungen mit:
+Nun erzeugen wir die gerade auskommentierten Lokalisierungen mit:
 
 ```bash
 locale-gen
@@ -305,13 +304,13 @@ Nun stellen wir noch die Tastatur für die virtuelle Konsole auf Deutsch.
 echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
 ```
 
-Jeder PC hat einen Namen, den sogenannten Hostnamen. Den definieren wir mit:
+Jeder PC hat einen Namen, den sogenannten *Hostnamen*. Den definieren wir mit:
 
 ```bash
 vim /etc/hostname
 ```
 
-In die Datei schreiben wir einen beliebigen Namen für unseren PC, z. B. ```lehnen```
+In die Datei schreiben wir einen beliebigen Namen für unseren PC, z. B. ```arch```
 
 Damit unser eigener PC und das Netzwerk diesen Namen verwalten können, brauchen wir noch eine passende hosts-Datei. Tippe:
 
@@ -324,12 +323,13 @@ und trage Folgendes ein:
 ```bash
 127.0.0.1 localhost
 ::1       localhost
-127.0.1.1 lehnen.localdomain  lehnen
+127.0.1.1 arch.localdomain  arch
 ```
 
-Passe den Computernamen entsprechend an. Wenn du oben lehnen gewählt hast, kannst du die Datei so übernehmen, ansonsten änderst du die beiden Stellen in deinen Namen um.
+Passe den Computernamen entsprechend an. Wenn du oben ```arch``` gewählt hast, kannst du die Datei so übernehmen, ansonsten änderst du die beiden Stellen in deinen Namen um.
 
 Die Datei enthält schon Text.
+
 ![hosts](hosts.png)
 
 Die # sagen, dass es sich nur um Kommentare oder inaktive Befehle handelt.
@@ -353,7 +353,7 @@ Die Zeile ```HOOKS=(    )``` muss so wie im Bild aussehen. Die Reihenfolge ist w
 
 ![hooks](hooks.png)
 
-Wir verlassen den Einfügemodus von vim mit der Esc-Taste und dann schreiben wir die Änderungen mit ```:wq```
+Wir verlassen den Einfügemodus von vim mit der ```Esc-Taste``` und dann schreiben wir die Änderungen mit ```:wq```.
 Nun aktualisieren wir unsere Änderungen mit:
 
 ```bash
@@ -390,19 +390,19 @@ vim /etc/default/grub
 editieren wir die Konfigurationsdatei für den Bootloader. Weil wir die Festplatte verschlüsselt haben, ist dieser Schritt notwendig.
 Du gehst zur Zeile ```GRUB_CMDLINE_LINUX=""``` und stellst den Cursor zwischen die Anführungszeichen.
 Jetzt tippst du ```i``` (damit du etwas einfügen kannst) und schreibst: ```cryptdevice=```
-Nun tippst du die __Esc-Taste__
-Nun schreibst du ```:r!blkid /dev/sda3```
+Nun tippst du die ```Esc-Taste```.
+Nun schreibst du ```:r!blkid /dev/sda3```.
 Jetzt tippst du wieder ```i```, gehst hinter das Gleichheitszeichen von __cryptdevice__ und löschst __DAHINTER__ alles so, wie es in folgendem Screenshot zu sehen ist. Die Zahl nach ```UUID=``` ist bei dir eine andere.
 
 ![cryptdevice](cryprdevice.png)
 
 Achte bitte darauf, dass die Anführungs- und Schlusszeichen genau so wie in der obigen Abbildung gesetzt wurden.
 
-Wir verlassen jetzt __vim__ wieder mit __Esc__ und dann schreiben wir ```:wq```
+Wir verlassen jetzt __vim__ wieder mit der ```Esc-Taste``` und dann schreiben wir ```:wq```
 
 Übrigens: Eine UUID ist eine eindeutige Kennziffer für deine Festplatte. Auch wenn du deine Festplatte oder deinen Stick in einen anderen Computer steckst, der weitere Festplatten und Sticks enthält, kann der Bootloader deine Festplatte immer noch eindeutig zuordnen.
 
-Jetzt aktualisieren wir die grub-Konfigurationsdatei mit:
+Die grub-Konfigurationsdatei aktualisieren wir mit:
 
 ```bash
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -410,7 +410,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ![grub-mkconfig](grub-mkconfig.png)
 
-Jetzt aktivieren wir noch die Dienste, die wir wirklich brauchen. In Windows werden immer unzählige Dienste gestartet, obwohl man viele davon nicht braucht. Diese verbrauchen viele System-Ressourcen und machen den PC langsam. Tippe:
+Jetzt aktivieren wir noch die Dienste, die wir wirklich brauchen. Hier sind es die Zeitsynchronisation (systemd-timesyncd), die Netzwerkverbindung (NetworkManager) und den Login-Manager (lightdm).
+In Windows werden immer unzählige Dienste gestartet, obwohl man viele davon nicht braucht. Diese verbrauchen viele System-Ressourcen und machen den PC langsam. Tippe:
 
 ```bash
 systemctl enable systemd-timesyncd NetworkManager lightdm
@@ -422,11 +423,11 @@ Jetzt geben wir uns noch sudo (root) Rechte. Dazu editieren wir die entsprechend
 EDITOR=vim visudo
 ```
 
-Wir suchen nach der Zeile ```# %wheel ALL=(ALL) ALL```
-Wir drücken wieder i zum Einfügen und löschen das ```#```
-Jetzt drücken wir Esc und schreiben ```:wq```
+Wir suchen nach der Zeile ```# %wheel ALL=(ALL) ALL```.
+Wir drücken wieder die Taste ```i``` zum Einfügen und löschen das ```#```
+Jetzt drücken wir ```Esc``` und schreiben ```:wq```
 
-Wir müssen uns selbst noch zur Gruppe wheel und zu anderen Gruppen hinzufügen. Das machen wir mit:
+Alle Benutzer, die in der Gruppe ```wheel``` sind, haben die Berechtigung, sudo (root) Rechte zu erhalten. Wir müssen uns daher selbst noch zur Gruppe ```wheel``` und zu anderen Gruppen hinzufügen. Das machen wir mit:
 
 ```bash
 useradd -m -g users -G wheel,audio,video,disk,storage,optical,scanner,rfkill,input -s /bin/bash michael
@@ -476,13 +477,13 @@ Wir verlassen das Installationssystem mit:
 exit
 ```
 
-Dann hängen wir das frisch installierte Linux aus dem gebooteten Linux aus mit:
+Dann hängen wir das frisch installierte Linux aus dem Linux aus, in dem wir uns gerade befinden:
 
 ```bash
 umount -R /mnt
 ```
 
-Zum Schuss schließen wir die verschlüsselte Partition:
+Zum Schuss schließen wir noch die verschlüsselte Partition:
 
 ```bash
 cryptsetup close michael
@@ -497,9 +498,10 @@ reboot
 ![exit](exit.png)
 ![close reboot](cryptsetup_close_und_reboot.png)
 
-Es könnte sein, dass dein PC noch vom Stick bootet. Denke daran diesen auszustecken.
+Es könnte sein, dass dein PC noch vom Stick bootet. Denke daran, diesen auszustecken.
 
 Nach den Neustart landest du im Login-Manager. Gib hier dein Passwort ein.
+Denke daran: Auch hier erhältst du aus Sicherheitsgründen kein Feedback!
 
 ![login michael](login_manager.png)
 
@@ -512,11 +514,11 @@ Um Firefox zu installieren, tippst du:
 sudo pacman -S firefox
 ```
 
-Du kannst auch weitere Arbeitsumgebungen installieren. Eine Übersicht über mögliche Arbeitsumgebungen findest du hier: [desktop environments](https://wiki.archlinux.org/index.php/desktop_environment).
+Du kannst auch weitere Arbeitsumgebungen installieren. Eine Übersicht dazu findest du hier: [desktop environments](https://wiki.archlinux.org/index.php/desktop_environment).
 
 Die vielen Abfragen (siehe Screenshots) bestätigst du einfach mit der Eingabetaste.
 
-Für gnome schreibst du:
+Für ```gnome``` schreibst du:
 
 ```bash
 sudo pacman -S gnome gnome-extra
@@ -524,7 +526,7 @@ sudo pacman -S gnome gnome-extra
 
 ![gnome](gnome-extra.png)
 
-Fpr ```plasma``` schreibst du:
+Für ```plasma``` schreibst du:
 
 ```bash
 sudo pacman -S plasma
@@ -532,7 +534,7 @@ sudo pacman -S plasma
 
 ![plasma](plasma.png)
 
-Für i3, einen Tiling Window Manager, schreibst du:
+Für ```i3```, einen *Tiling Window Manager*, schreibst du:
 
 ```bash
 sudo pacman -S i3 i3status
@@ -541,3 +543,41 @@ sudo pacman -S i3 i3status
 Um die entsprechende Oberfläche zu verwenden, klickst du im Login-Manager oben rechts auf das Icon, das du in folgendem Screenshot siehst:
 
 ![Login Manager Auswahl](login_manager_Auswahl.png)
+
+## Pacman-Befehle
+
+- ```sudo pacman -Syy``` - Paketquellen aktualisieren
+- ```sudo pacman -Syu``` - Betriebssystem- und Programm-Update
+- ```sudo pacman -Qe```  - sehen, welche Programme installiert sind
+- ```sudo pacman -Ss [Programmname]```  - sehen, ob ein Programm installiert ist oder wie es heißt
+
+## Das AUR - weitere Programme außerhalb des offiziellen Arch-Repositoriums
+
+Es gibt in Arch Linux noch eine große Anzahl von Programmen, für die von Benutzern Installations-Skripte erstellt werden.
+Das macht man mit sogenannten "AUR-Helpern". Eins der populärsten ist ```"yay"```.
+Die Installationsskripte finden sich auf "git".
+Um yay zu installieren, gibt man ein:
+
+```bash
+git clone aur.archlinux.org/yay
+```
+
+Dann wechselt man ins heruntergeladene Verzeichnis mit ```cd yay``` und gibt dort ein: ```makepkg -si```.
+
+Nach der Installation kann man alle AUR-Pakete mit ```"yay"``` installieren.
+Ein Programm für den Unterricht ist z. B. "filius". Um es zu installieren tippt man: 
+
+```
+yay filius
+```
+
+yay lädt nun das Installationsskript herunter und installiert fehlende Abhängigkeiten, in diesem Fall z. B. Java.
+
+## Alias anlegen
+
+Damit man in der Konsole häufig verwendete Befehle nicht immer in voller Länge tippen muss, kann man dafür jeweils einen Alias anlegen.
+Man braucht z. B. häufig den Installationsbefehl "pacman". Zu pacman gibt es auch noch mehrere Optionen, z. B. dass eine Installation ohne weitere Bestätigungen ausgeführt werden soll und dass nichts installiert werden soll, falls das Programm schon vorhanden ist. Der Befehl würde lauten ```sudo pacman -S --noconfirm --needed```.
+Aliasse findet man in der Datei .bashrc. Der Punkt vor einer Datei heißt übrigens, dass sie versteckt ist.
+Wir editieren diese Datei mit ```vim .bashrc```. Wir benutzen **KEIN** ```sudo```, weil die Datei ja uns und nicht dem root-Benutzer gehört.
+Will man mit den Buchstaben ```p``` in Zukunft den gesamten Befehl aufrufen, schreibt man: ```alias p='sudo pacman -S --noconfirm --needed'```.
+Um das komplette System und alle AUR-Pakete zu aktualisieren, könnte man den Alias ```pu``` (pacman Update) erstellen. Die Zeile dazu hieße dann: ```alias pu='sudo pacman -Syu && yay -Syu'```.
