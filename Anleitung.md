@@ -548,10 +548,9 @@ Um die entsprechende Oberfläche zu verwenden, klickst du im Login-Manager oben 
 ## Das AUR - weitere Programme außerhalb des offiziellen Arch-Repositoriums
 
 Es gibt in Arch Linux noch eine große Anzahl von Programmen, für die Benutzer Installations-Skripte erstellt haben.
-Die Installation erledigt dann nicht ```pacman```, sondern sogenannte "AUR-Helper". Ein populärer AUR-Helper ```"yay"```.
-Die Installationsskripte finden sich auf "git".
+Die Installation erledigt dann nicht ```pacman```, sondern ein sogenannter "AUR-Helper". Ein populärer AUR-Helper ist ```yay```.
 
-Um yay zu installieren, gibt man ein:
+Um ```yay``` zu installieren, klont man das Repositorium, in den sich  das Installationsscript befindet:
 
 ```bash
 git clone aur.archlinux.org/yay
@@ -559,8 +558,8 @@ git clone aur.archlinux.org/yay
 
 Dann wechselt man ins heruntergeladene Verzeichnis mit ```cd yay``` und gibt dort ein: ```makepkg -si```.
 
-Nach der Installation kann man alle AUR-Pakete mit ```"yay"``` installieren.
-Ein Programm für den Unterricht ist z. B. "filius". Um es zu installieren tippt man: 
+Nach der Installation kann man alle AUR-Pakete mit dem Befehl ```yay``` installieren.
+Ein Programm für den Unterricht ist z. B. "filius". Um es zu installieren, tippt man: 
 
 ```
 yay filius
