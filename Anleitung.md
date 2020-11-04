@@ -561,7 +561,10 @@ gpasswd -a michael autologin
 Nun tragen wir in die Konfigurationsdatei des Login-Managers ein, wer standardmäßig angemeldet werden soll, mit:
 
 ```bash
-sudo vim 
+sudo vim /etc/lightdm/lightdm.conf
+```
+
+Wir suchen hier nach der Zeile ```[Seat:*]```. Hier finden wir etwas weiter unten: ```#autologin-user=```. Wir entfernen das #-Zeichen und schreiben nach dem =-Zeichen unseren Benutzernamen, in diesem Fall ```michael```.
 
 ## Pacman-Befehle
 
