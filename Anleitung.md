@@ -443,7 +443,7 @@ passwd michael
 Wir müssen noch eine Spracheinstellung für die grafische Benutzeroberfläche vornehmen. Das machen wir mit:
 
 ```bash
-nano /etc/X11/xorg.conf.d/00-keyboard.conf
+vim /etc/X11/xorg.conf.d/00-keyboard.conf
 ```
 
 In die Datei tragen wir ein:
@@ -559,16 +559,18 @@ Wir suchen hier nach der Zeile ```[Seat:*]```. Hier finden wir etwas weiter unte
 
 ## Performance
 
-Falls die Installation auf einem Stick erfolgt, können wir noch etwas Performance herausholen, indem wir temporäre Dateien in den Arbeitsspeicher und nicht auf den Stick speichern. Dazu geben wir folgende Befehle ein:
+Falls die Installation auf einem Stick erfolgt, können wir noch etwas Performance herausholen, indem wir temporäre Dateien in den Arbeitsspeicher und nicht auf den Stick speichern. Dazu editieren wir die fstab-Datei:
 
 ```bash
-echo "tmpfs   /tmp                   tmpfs   rw,nodev,nosuid 0  0" >> /etc/fstab
+sudo vim /etc/fstab
 ```
+
+und kopiere beide Zeilen dort hinein:
 
 ```bash
-echo "tmpfs   /home/michael/.cache   tmpfs   rw,nodev,nosuid 0  0" >> /etc/fstab
+tmpfs   /tmp                   tmpfs   rw,nodev,nosuid 0  0
+tmpfs   /home/michael/.cache   tmpfs   rw,nodev,nosuid 0  0
 ```
-
 
 ## Pacman-Befehle
 
