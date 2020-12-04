@@ -19,7 +19,7 @@ __Nachteile:__
 Zunächst müssen wir sicherstellen, dass wir von unserem erstellten USB-Stick booten können. Bei HP-PCs drückt man dazu nach dem Einschalten die F9-Taste so lange, bis ein Menü erscheint, in dem man den Stick auswählen kann.
 Danach sieht man diesen Bildschirm:
 ![Bootstick Arch Linux](bootstick.png)
-Wir drücken hier die Eingabetaste bei der grau unterlegten Schrift. Dann sehen wir viele Zeilen mit Text. Hier handelt es sich um Programme, die für den Start des Betriebssystems notwendig sind. Die meisten sollten zu Beginn ein grünes OK in eckigen Klammern enthalten.
+Wir bleiben auf dem grau unterlegten ersten Eintrag und drücken die Eingabetaste. Dann sehen wir viele Zeilen mit Text. Hier handelt es sich um Programme, die für den Start des Betriebssystems notwendig sind. Die meisten sollten zu Beginn der Zeile ein grünes OK in eckigen Klammern enthalten.
 
 Dann landen wir in der Linux-Kommandozeile. Sie wird auch "Terminal" oder "Konsole" genannt.
 Vielleicht kennst du sie schon aus Filmen. Oftmals wird das Terminal mit Hackern in Verbindung gebracht, die dort Befehle eingeben oder Scripte (Mini-Programme) ausführen. In der Linux-Welt benutzt man (als Profi) oft das Terminal, weil sich viele Aufgaben schneller darüber erledigen lassen als über ein Programm mit einer Programmoberfläche (GUI).
